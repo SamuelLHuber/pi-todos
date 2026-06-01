@@ -21,6 +21,12 @@ Gives pi a persistent todo system backed by real files instead of conversation-o
 pi install npm:pi-todos
 ```
 
+Or install directly from git:
+
+```bash
+pi install git:https://github.com/SamuelLHuber/pi-todos.git
+```
+
 Or try it without installing:
 
 ```bash
