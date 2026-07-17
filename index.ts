@@ -30,6 +30,7 @@
  * naturally.
  */
 import {
+	CONFIG_DIR_NAME,
 	DynamicBorder,
 	copyToClipboard,
 	getMarkdownTheme,
@@ -39,7 +40,6 @@ import {
 	type KeybindingsManager,
 	type Theme,
 } from "@earendil-works/pi-coding-agent";
-import { StringEnum } from "@earendil-works/pi-ai";
 import { Type } from "typebox";
 import path from "node:path";
 import fs from "node:fs/promises";
@@ -62,7 +62,7 @@ import {
 	visibleWidth,
 } from "@earendil-works/pi-tui";
 
-const TODO_DIR_NAME = ".pi/todos";
+const TODO_DIR_NAME = `${CONFIG_DIR_NAME}/todos`;
 const TODO_PATH_ENV = "PI_TODO_PATH";
 const TODO_SETTINGS_NAME = "settings.json";
 const TODO_ID_PREFIX = "TODO-";
@@ -99,17 +99,17 @@ interface TodoSettings {
 }
 
 const TodoParams = Type.Object({
-	action: StringEnum([
-		"list",
-		"list-all",
-		"get",
-		"create",
-		"update",
-		"append",
-		"delete",
-		"claim",
-		"release",
-	] as const),
+	action: Type.Union([
+		Type.Literal("list"),
+		Type.Literal("list-all"),
+		Type.Literal("get"),
+		Type.Literal("create"),
+		Type.Literal("update"),
+		Type.Literal("append"),
+		Type.Literal("delete"),
+		Type.Literal("claim"),
+		Type.Literal("release"),
+	]),
 	id: Type.Optional(
 		Type.String({ description: "Todo id (TODO-<hex> or raw hex filename)" }),
 	),

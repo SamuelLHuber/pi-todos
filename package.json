@@ -1,6 +1,6 @@
 {
   "name": "pi-todos",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "File-backed todo system for pi — persistent tasks across sessions",
   "keywords": ["pi-package", "pi-extension", "todos", "tasks", "productivity"],
   "type": "module",
@@ -17,7 +17,6 @@
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",
     "@earendil-works/pi-tui": "*",
-    "@earendil-works/pi-ai": "*",
     "typebox": "*"
   }
 }
