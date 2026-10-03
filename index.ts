@@ -744,7 +744,7 @@ function getTodoSettingsPath(todosDir: string): string {
 
 function normalizeTodoSettings(raw: Partial<TodoSettings>): TodoSettings {
 	const gc = raw.gc ?? DEFAULT_TODO_SETTINGS.gc;
-	const gcDays = Number.isFinite(raw.gcDays) ? raw.gcDays : DEFAULT_TODO_SETTINGS.gcDays;
+	const gcDays = typeof raw.gcDays === "number" && Number.isFinite(raw.gcDays) ? raw.gcDays : DEFAULT_TODO_SETTINGS.gcDays;
 	return {
 		gc: Boolean(gc),
 		gcDays: Math.max(0, Math.floor(gcDays)),
@@ -1452,6 +1452,7 @@ export default function todosExtension(pi: ExtensionAPI) {
 			"Claim tasks before working on them to avoid conflicts, and close them when complete.",
 		promptSnippet: `todo: Manage file-based todos in ${todosDirLabel} (list, list-all, get, create, update, append, delete, claim, release). Claim tasks before working on them to avoid conflicts, and close them when complete.`,
 		parameters: TodoParams,
+		executionMode: "sequential",
 
 		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
 			const todosDir = getTodosDir(ctx.cwd);
@@ -2087,7 +2088,7 @@ export default function todosExtension(pi: ExtensionAPI) {
 
 			if (nextPrompt) {
 				ctx.ui.setEditorText(nextPrompt);
-				rootTui?.requestRender();
+				(rootTui as TUI | null)?.requestRender();
 			}
 		},
 	});
