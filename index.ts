@@ -56,6 +56,8 @@ import {
 	type SelectItem,
 	Text,
 	TUI,
+	type TuiMouseEvent,
+	type TuiMouseEventResult,
 	fuzzyMatch,
 	matchesKey,
 	truncateToWidth,
@@ -615,6 +617,12 @@ class TodoDetailOverlayComponent {
 			this.scrollBy(this.viewHeight || 1);
 			return;
 		}
+	}
+
+	handleMouse(event: TuiMouseEvent): TuiMouseEventResult | undefined {
+		if (event.type !== "wheel" || !event.wheelDelta) return undefined;
+		this.scrollBy(event.wheelDelta);
+		return { handled: true };
 	}
 
 	render(width: number): string[] {

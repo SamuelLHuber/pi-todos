@@ -1,7 +1,10 @@
 {
   "name": "pi-todos",
   "version": "1.0.2",
-  "scripts": { "check": "tsc --noEmit", "test": "node --test test/*.test.mjs" },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --test test/*.test.mjs"
+  },
   "description": "File-backed todo system for pi — persistent tasks across sessions",
   "keywords": [
     "pi-package",
@@ -27,8 +30,8 @@
     "typebox": "*"
   },
   "devDependencies": {
-    "@earendil-works/pi-coding-agent": "1.0.0",
-    "@earendil-works/pi-tui": "1.0.0",
+    "@earendil-works/pi-coding-agent": "1.4.0",
+    "@earendil-works/pi-tui": "1.4.0",
     "@types/node": "22.20.5",
     "typebox": "1.2.0",
     "typescript": "6.0.3"
